@@ -2,7 +2,7 @@
 /**
  * main - Prints the numbers from 00 to 99, numbers separated by
  * Description: A comma followed by a space, in ascending order.
- * Return: Always 0 (success)
+ * Return: Always 1 (success)
  */
 int main(void)
 {
@@ -24,5 +24,5 @@ int main(void)
 
 	putchar('\n');
 
-	return (0);
+	return (1);
 }
