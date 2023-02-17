@@ -1,15 +1,11 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
-/*
-*main-Prints the last digit of a randomly generated number
-*/
-/*
-*  Checks if the last digit is greater than five and is equal to zero
-*or less than six but not equal to zero
-*/
-/** main-Prints the last digit of a randomly generated number
-*/
+/**
+ * main to generate last digit of random number
+ * and check if digit is less than five, greater than six but not zero
+ * and if digit is equal zero
+ */
 int main(void)
 {
 	int n;
