@@ -2,13 +2,13 @@
 #include <time.h>
 #include <stdio.h>
 /*
-*main - Prints the last digit of a randomly generated number 
+*main-Prints the last digit of a randomly generated number 
 */
 /*
 *  Checks if the last digit is greater than five and is equal to zero
-* or less than six but not equal to zero 
-* */
-int main(void)
+*or less than six but not equal to zero 
+*/
+int main(void) /* main - Prints the last digit of a randomly generated number */
 {
 	int n;
 
@@ -22,7 +22,6 @@ int main(void)
 		printf("Last digit of %d is %d and is less than 6 and not 0\n", n, n % 10);
 	}
 	else
-	{
-		printf("Last digit of %d is %d and is 0\n", n, n % 10);	}	
+	{		printf("Last digit of %d is %d and is 0\n", n, n % 10);	}	
 	return (0);
 }
