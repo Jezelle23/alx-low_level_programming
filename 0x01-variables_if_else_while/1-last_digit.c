@@ -2,9 +2,10 @@
 #include <time.h>
 #include <stdio.h>
 /**
- * main to generate last digit of random number
- * and check if digit is less than five, greater than six but not zero
+ * main - To generate last digit of random number
+ * Description: Check if digit is less than five, greater than six but not zero
  * and if digit is equal zero
+ * Return: Always 0 (Success).
  */
 int main(void)
 {
