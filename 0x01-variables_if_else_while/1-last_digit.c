@@ -8,7 +8,9 @@
 *  Checks if the last digit is greater than five and is equal to zero
 *or less than six but not equal to zero
 */
-int main(void) /* main-Prints the last digit of a randomly generated number */
+/** main-Prints the last digit of a randomly generated number
+*/
+int main(void)
 {
 	int n;
 
