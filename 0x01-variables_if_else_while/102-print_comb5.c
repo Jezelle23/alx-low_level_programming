@@ -19,7 +19,7 @@ int main(void)
 			{
 				for (digit4 = 0; digit4 < 10; digit4++)
 				{
-					if (digit1 == 0 && digit2 == 0 && digit3 == 0 && digit4 == 0)
+					if (digit1 % 10  == 0 && digit2 % 10 == 0 && digit3 % 10 == 0 && digit4 % 10 == 0)
 					{
 						continue;
 					}
