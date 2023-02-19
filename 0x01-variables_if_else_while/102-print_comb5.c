@@ -32,7 +32,7 @@ int main(void)
 					putchar(digit3 + '0');
 					putchar(digit4 + '0');
 
-					if (digit1 == 9 && digit2 == 9 && digit3 == 9 && digit4 ==9)
+					if (digit1 == 9 && digit2 == 9 && digit3 == 9 && digit4 == 9)
 					{
 						continue;
 					}
