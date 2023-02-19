@@ -23,13 +23,12 @@ int main(void)
 					{
 						continue;
 					}
-					if (dig1 && dig2 == dig3 && dig4)
+					if (dig1 % 10 == 1 && dig2 % 10 ==1 && dig3 % 10 ==1 && dig4 % 10 ==1)
 					{
 						continue;
 					}
 					putchar(dig1 + '0');
 					putchar(dig2 + '0');
-
 
 					putchar(' ');
 
