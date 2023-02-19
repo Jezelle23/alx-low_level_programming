@@ -6,33 +6,37 @@
  */
 int main(void)
 {
-	int digit1;
-	int digit2;
-	int digit3;
-	int digit4;
+	int dig1;
+	int dig2;
+	int dig3;
+	int dig4;
 
-	for (digit1 = 0; digit1 < 10; digit1++)
+	for (dig1 = 0; dig1 < 10; dig1++)
 	{
-		for (digit2 = 0; digit2 < 10; digit2++)
+		for (dig2 = 0; dig2 < 10; dig2++)
 		{
-			for (digit3 = 0; digit3 < 10; digit3++)
+			for (dig3 = 0; dig3 < 10; dig3++)
 			{
-				for (digit4 = 0; digit4 < 10; digit4++)
+				for (dig4 = 0; dig4 < 10; dig4++)
 				{
-					if (digit1 % 10  == 0 && digit2 % 10 == 0 && digit3 % 10 == 0 && digit4 % 10 == 0)
+					if (dig1 % 10  == 0 && dig2 % 10 == 0 && dig3 % 10 == 0 && dig4 % 10 == 0)
 					{
 						continue;
 					}
-					putchar(digit1 + '0');
-					putchar(digit2 + '0');
+					if (dig1 && dig2 == dig3 && dig4)
+					{
+						continue;
+					}
+					putchar(dig1 + '0');
+					putchar(dig2 + '0');
 
 
 					putchar(' ');
 
-					putchar(digit3 + '0');
-					putchar(digit4 + '0');
+					putchar(dig3 + '0');
+					putchar(dig4 + '0');
 
-					if (digit1 == 9 && digit2 == 9 && digit3 == 9 && digit4 == 9)
+					if (dig1 == 9 && dig2 == 9 && dig3 == 9 && dig4 == 9)
 					{
 						continue;
 					}
