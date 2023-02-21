@@ -3,8 +3,8 @@
 /**
  * main - Print out the alphabet
  * Description: Print the alphabet in lower case
- * print_alphabet - prints the aplhabets in all lower case
- * Return: Always 0 (Success)
+ * print_alphabet: prints the aplhabets in all lower case
+ * Return: void
  */
 void print_alphabet(void)
 {
