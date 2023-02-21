@@ -3,10 +3,10 @@
 /**
  * main - Print out the alphabet
  * Description: Print the alphabet in lower case
- * print_alphabet: prints the aplhabets in all lower case
+ * void print_alphabet: prints the aplhabets in all lower case
  * Return: void
  */
-void print_alphabet(void) //print_alphabet: prototype//
+void print_alphabet(void) 
 {
 	char c;
 
