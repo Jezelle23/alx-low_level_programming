@@ -1,9 +1,8 @@
 #include<stdio.h>
 #include "main.h"
 /**
- * main - Print out the alphabet
+ * print_alphabet - Prints the alphabets in all lower case
  * Description: print_alphabet is a prototype to print out alphabets
- * print_alphabet - Prints the aplhabets in all lower case
  * Return: void
  */
 void print_alphabet(void)
