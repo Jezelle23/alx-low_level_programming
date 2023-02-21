@@ -6,7 +6,7 @@
  * print_alphabet: prints the aplhabets in all lower case
  * Return: void
  */
-void print_alphabet(void)
+void print_alphabet(void) //print_alphabet: prototype//
 {
 	char c;
 
