@@ -2,11 +2,11 @@
 #include "main.h"
 /**
  * main - Print out the alphabet
- * Description: Print the alphabet in lower case
- * void print_alphabet: prints the aplhabets in all lower case
+ * Description: print_alphabet is a prototype to print out alphabets
+ * void print_alphabet -  prints the aplhabets in all lower case
  * Return: void
  */
-void print_alphabet(void) 
+void print_alphabet(void )
 {
 	char c;
 
