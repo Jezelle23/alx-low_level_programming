@@ -2,16 +2,19 @@
 /**
  * _strlen - This function returns the length of a string
  * @s: This is the parameter to change
+ * @i: This is the integer variable
  * Return: length
  */
 int _strlen(char *s)
 {
-	int length;
+	int i;
 
-	while (*s != '\0')
+	i = 0;
+
+	while (s[i] != '\0')
 	{
-		length = length + 1;
-		s = s + 1;
+		i++;
 	}
-	return (length);
+
+	return (i);
 }
