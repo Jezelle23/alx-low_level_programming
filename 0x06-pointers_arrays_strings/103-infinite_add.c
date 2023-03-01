@@ -1,13 +1,11 @@
-#include"main.h"
+#include "main.h"
+
 /**
- * infinite_add - Add up two numbers stored in given char arrays
- * @n1: The first number
- * @n2: The second number
- * @r: Pointer to the buffer to store result
- * @size_r: The size of the buffer
- *
- * Return: 0 if buffer too small to store result, else return pointer to buffer
+ * rev_string - reverse array
+ * @n: integer params
+ * Return: 0
  */
+
 void rev_string(char *n)
 {
 	int i = 0;
@@ -27,6 +25,15 @@ void rev_string(char *n)
 		*(n + i) = temp;
 	}
 }
+
+/**
+ * infinite_add - add 2 numbers together
+ * @n1: text representation of 1st number to add
+ * @n2: text representation of 2nd number to add
+ * @r: pointer to buffer
+ * @size_r: buffer size
+ * Return: pointer to calling function
+ */
 
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
