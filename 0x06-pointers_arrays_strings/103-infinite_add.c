@@ -1,31 +1,67 @@
 #include"main.h"
 /**
- * infinite_add - Adds two numbers.
- * @n1: The first number to be added.
- * @n2: The second number to be added.
- * @r: The buffer to store the result.
- * @size_r: The buffer size.
+ * infinite_add - Add up two numbers stored in given char arrays
+ * @n1: The first number
+ * @n2: The second number
+ * @r: Pointer to the buffer to store result
+ * @size_r: The size of the buffer
  *
- * Return: If r can store the sum - a pointer to the result.
- *         If r cannot store the sum - 0.
+ * Return: 0 if buffer too small to store result, else return pointer to buffer
  */
-
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int index, n1_len = 0, n2_len = 0;
+	int l1, l2, tmpl, rl, i, sum, num1, num2, carry;
+	char tmp[10000];
 
-	for (index = 0; *(n1 + index); index++)
-		n1_len++;
-
-	for (index = 0; *(n2 + index); index++)
-		n2_len++;
-
-	if (size_r <= n1_len + 1 || size_r <= n2_len + 1)
+	rl = i = l1 = l2 = sum = num1 = num2 = carry = 0;
+	while (n1[l1] != '\0')
+		l1++;
+	while (n2[l2] != '\0')
+		l2++;
+	if (l1 + 2 > size_r || l2 + 2 > size_r)
 		return (0);
-
-	n1 += n1_len - 1;
-	n2 += n2_len - 1;
-	*(r + size_r) = '\0';
-
-	return (add_strings(n1, n2, r, --size_r));
+	l1--;
+	l2--;
+	while (i <= l1 || i <= l2)
+	{
+		num1 = num2 = 0;
+		if (i <= l1)
+			num1 = n1[l1 - i] - '0';
+		if (i <= l2 && (l2 - i) >= 0)
+			num2 = n2[l2 - i] - '0';
+		sum = num1 + num2 + carry;
+		if (sum >= 10)
+		{
+			carry = 1;
+			sum -= 10;
+		}
+		else
+			carry = 0;
+		r[i] = sum + '0';
+		i++;
+		rl++;
+	}
+	if (carry > 0)
+	{
+		r[i] = carry + '0';
+		r[i + 1] = '\0';
+	}
+	i = tmpl = 0;
+	while (i <= rl)
+	{
+		tmp[i] = r[rl - i];
+		tmpl++;
+		i++;
+	}
+	i = 0;
+	while (i < tmpl)
+	{
+		if (r[i] == '\0')
+		{
+			break;
+		}
+		r[i] = tmp[i];
+		i++;
+	}
+	return (r);
 }
