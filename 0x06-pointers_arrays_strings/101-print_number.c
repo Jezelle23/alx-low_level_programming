@@ -1,26 +1,52 @@
-#include"main.h"
-#include<stdio.h>
+#include "main.h"
+
 /**
- * print_number - print integer
+ * base10 - power in 10 base
+ * @n: an exponent
+ * Return: returns 10 to power exponent
+ */
+int base10(int n)
+{
+	int base = 10;
+
+	while (n > 0)
+	{
+		base *= 10;
+		n--;
+	}
+	return (base);
+}
+
+/**
+ * print_number - prints integers enters as parameters using putchar
+ * @n: integer to print
  * Return: void
- * @n: number
  */
 void print_number(int n)
 {
-	unsigned int n1;
+	int power;
+
+	power = base10(8);
 
 	if (n < 0)
 	{
-		n1 = -n;
 		_putchar('-');
+		n *= -1;
 	}
+
+	if (n == 0)
+		_putchar('0');
+
 	else
 	{
-		n1 = n;
+		while (n / power == 0)
+			power /= 10;
+
+		while (power >= 1)
+		{
+			_putchar((n / power) + '0');
+			n %= power;
+			power /= 10;
+		}
 	}
-
-	if (n1 / 10)
-		print_number(n1 / 10);
-
-	_putchar((n1 % 10) + '0');
 }
