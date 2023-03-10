@@ -1,18 +1,24 @@
-#include"main.h"
-#include<stdio.h>
-/**
- * main - Prints all arguments passed into main
- * @argc: Number of command line arguments
- * @argv: Array name
- * Return: 0
- */
-
-int main(int argc, char *argv[])
-{
-	int i;
-
-	for (i = 0; i < argc; i++)
-		printf("%s\n", argv[i]);
-
-	return (0);
+#include <stdio.h>                                                                                                                   
+#include "main.h"                                                                                                                    
+                                                                                                                                     
+/**                                                                                                                                  
+ * main - Print the name of the program                                                                                              
+ * @argc: Count arguments                                                                                                            
+ * @argv: Arguments                                                                                                                  
+ *                                                                                                                                   
+ * Return: Always 0 (Success)                                                                                                        
+ */                                                                                                                                  
+                                                                                                                                     
+int main(int argc, char *argv[])                                                                                                     
+{                                                                                                                                    
+                                                                                                                                     
+/*Declaring variables*/                                                                                                              
+int count = 0;                                                                                                                       
+                                                                                                                                     
+if (argc > 0)                                                                                                                        
+{                                                                                                                                    
+/*WHILE - Print each arguments*/                                                                                                     
+while (count < argc)                                                                                                                 
+{                                                                                                                                    
+printf("%s\n", argv[count]);
 }
