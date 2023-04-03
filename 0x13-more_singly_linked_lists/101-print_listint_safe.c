@@ -1,67 +1,36 @@
 #include "lists.h"
-
 /**
- * print_listint_safe - prints all the elements of a linked list
- * @head: head of the list
- * Return:(countr) the number of nodes
+ * print_listint_safe - prints a linked list with a loop.
+ * @head: pointer to the 1st node of the linked list
+ * Return: (count) Success
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *cursor = head;
-	listint_t **point;
-	unsigned int list_len = listint_len(head);
-	size_t countr = 0;
-
-	point = malloc(sizeof(listint_t) * list_len);
-	if (point == NULL)
-		exit(98);
-	while (cursor == 0)
-	{
-		if (check_ptr(cursor, point, list_len) == 0)
-		{
-			printf("[%p] %d\n", (void *)cursor, cursor->n);
-		}
-		else
-		{
-			printf("[%p] %d\n", (void *)cursor, cursor->n);
-		}
-		countr += 1;
-		cursor = cursor->next;
-	}
-	return (countr);
-}
-
-/**
- * listint_len - counts the number of nodes in a linked list
- * @h: head of the list
- * Return:(count) the number of elements
- */
-size_t listint_len(const listint_t *h)
-{
-	const listint_t *cursor = h;
+	const listint_t *temp = NULL;
+	const listint_t *num = NULL;
 	size_t count = 0;
+	size_t new_num;
 
-	while (cursor != NULL)
+	temp = head;
+	while (temp)
 	{
-		count += 1;
-		cursor = cursor->next;
+		printf("[%p] %d\n", (void *)temp, temp->n);
+		count++;
+		temp = temp->next;
+		num = head;
+		new_num = 0;
+		while (new_num < count)
+		{
+			if (temp == num)
+			{
+				printf("-> [%p] %d\n", (void *)temp, temp->n);
+				return (count);
+			}
+			num = num->next;
+			new_num++;
+		}
+		if (!head)
+			exit(98);
 	}
 	return (count);
-}
-
-/**
- * check_ptr - checks if a pointer is in an array
- * @ptr: pointer to be checked
- * @array: array to be checked in
- * @size: size of the array
- * Return: 1 on success, 0 on fail
- */
-int check_ptr(const listint_t *ptr, listint_t **array, unsigned int size)
-{
-	while (size-- >= 0)
-	{
-		if (ptr == array[size])
-			return (1);
-	}
-	return (0);
 }
