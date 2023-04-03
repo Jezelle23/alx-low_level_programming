@@ -6,18 +6,30 @@
  * @n: integer to be used 
  * Return:(*head) address of new node added
  */
+static listint_t *new_node(const int n);
 listint_t *add_nodeint(listint_t **head, const int n)
 {
-	listint_t *newnode;
+	listint_t *new;
 
-	newnode = malloc(sizeof(listint_t));
-	if (newnode)
+	if (!(*head))
 	{
-		newnode->n = n;
-		newnode->next = *head;
-		*head = newnode;
-		return (newnode);
+		*head = new_node(n);
+		return (*head);
 	}
-	free(newnode);
-	return (NULL);
+
+	new = new_node(n);
+	new->next = *head;
+	*head = new;
+	return (*head);
+}
+static listint_t *new_node(const int n)
+{
+	listint_t *new;
+
+	new = malloc(sizeof(listint_t));
+	if (!new)
+		return (NULL);
+	new->n = n;
+	new->next = NULL;
+	return (new);
 }
