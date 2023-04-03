@@ -3,21 +3,21 @@
 /**
  *pop_listint - deletes the head node of a linked list
  *@head: head of the list
- *Return: (data) success
+ *Return: (num) success
  */
 
 int pop_listint(listint_t **head)
 {
-	listint_t *nodedata;
-	int data1;
+	listint_t *var123;
+	int num;
 
-	if (*head == NULL)
+	if (!head || !*head)
 		return (0);
 
-	nodedata = *head;
-	data1 = nodedata->n;
-	free(nodedata);
+	num = (*head)->n;
+	var123 = (*head)->next;
+	free(*head);
+	*head = var123;
 
-	*head = (*head)->next;
-	return (data1);
+	return (num);
 }
