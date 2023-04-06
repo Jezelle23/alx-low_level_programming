@@ -12,7 +12,9 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int file_x, n_read, written;
+	int file_x; 
+	int n_read; 
+	int written;
 	char *buffer;
 
 	buffer = malloc(sizeof(*buffer) * (letters + 1));
