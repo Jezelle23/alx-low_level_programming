@@ -6,27 +6,9 @@
  */
 void print_binary(unsigned long int n)
 {
-	unsigned long int outbine = 1ul << 63;
-	char i = '0';
-
-	while (!(outbine & n) &&outbine != 0)
-
-		outbine = outbine >> 1;
-
-	if (outbine == 0)
-		write(1, &i, 1);
-
-	while (outbine)
+	if (n > 0)
 	{
-		if (outbine & n)
-		{
-			i = '1';
-		}
-		else
-		{
-			i = '0';
-		write(1, &i, 1);
-		outbine = outbine >> 1;
-		}
+		print_binary(n >> 1);
+		 _putchar((n & 1) + '0');
 	}
 }
