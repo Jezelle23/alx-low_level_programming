@@ -11,26 +11,29 @@
  */
 int append_text_to_file(const char *filename, char *text_content)
 {
-	int num;
-	int write_x; 
-	int len = 0;
+	int fd, res, len = 0;
 
-	if (filename == NULL)
-		return (-1);
-
-	if (text_content != NULL)
+	if (!filename)
 	{
-		for (len = 0; text_content[len];)
-			len++;
+		return (-1);
 	}
 
-	num = open(filename, O_WRONLY | O_APPEND);
-	write_x = write(o, text_content, len);
-
-	if (num == -1 || write_x == -1)
+	fd = open(filename, O_WRONLY | O_APPEND);
+	if (fd == -1)
+	{
 		return (-1);
+	}
+	if (text_content)
+	{
+		len = strlen(text_content);
+		res = write(fd, text_content, len);
+		if (res == -1 || res != len)
+		{
+			close(fd);
+			return (-1);
+		}
+	}
 
-	close(num);
-
+	close(fd);
 	return (1);
-}
+}	
