@@ -1,102 +1,87 @@
 #include"main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <errno.h>
 
-void print_error(char *msg, ...);
-void check_io_stat(int status, int fd, char *filename, char mode);
+#define BUFF 1024
 
 /**
- * main - copies the content of one file to another
- * @argc: argument count
- * @argv: arguments passed
- *
- * Return: 1 on success, exit otherwise
+ * main - Entry point
+ * @argc: The number of command-line arguments
+ * @argv: An array of pointers to the arguments
+ * Return: 0 on success, otherwise error code
  */
 int main(int argc, char *argv[])
 {
-    int fd_from, fd_to, n_read, n_write;
-    char buffer[1024];
+	int x_from;
+	int y_to;
+	int readSize;
+	int writeSize;
+	char buffer[BUFF];
+	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 
-    if (argc != 3)
-    {
-        print_error("Usage: cp file_from file_to\n");
-        exit(97);
-    }
-    fd_from = open(argv[1], O_RDONLY);
-    check_io_stat(fd_from, -1, argv[1], 'O');
-    fd_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-    check_io_stat(fd_to, -1, argv[2], 'W');
-    while ((n_read = read(fd_from, buffer, sizeof(buffer))) > 0)
-    {
-        n_write = write(fd_to, buffer, n_read);
-        if (n_write == -1 || n_write != n_read)
-        {
-            print_error("Error: Can't write to %s\n", argv[2]);
-            exit(99);
-        }
-    }
-    if (n_read == -1)
-    {
-        print_error("Error: Can't read from file %s\n", argv[1]);
-        exit(98);
-    }
-    if (close(fd_from) == -1)
-    {
-        print_error("Error: Can't close fd %d\n", fd_from);
-        exit(100);
-    }
-    if (close(fd_to) == -1)
-    {
-        print_error("Error: Can't close fd %d\n", fd_to);
-        exit(100);
-    }
-    return (0);
-}
-
-/**
- * print_error - prints error message to STDERR
- * @msg: error message to be printed
- *
- * Return: void
- */
-void print_error(char *msg, ...)
-{
-	va_list args;
-
-	va_start(args, msg);
-	dprintf(STDERR_FILENO, msg, args);
- 	va_end(args);
-}
-
-/**
- * check_io_stat - checks if a file can be opened or closed
- * @status: file descriptor status
- * @fd: file descriptor
- * @filename: name of the file
- * @mode: closing or opening
- *
- * Return: void
- */
-void check_io_stat(int status, int fd, char *filename, char mode)
-{
-	if (status == -1)
+	/* Check number of arguments */
+	if (argc != 3)
 	{
-		if (mode == 'O')
+		 /* Print error message and exit with code 97 */
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(97);
+	}
+	/* Open file_from for reading */
+
+	x_from = open(argv[1], O_RDONLY);
+	if (x_from == -1)
+	{
+		/* Print error message and exit with code 98 */
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
+	}
+
+	/* Open file_to for writing, create if it doesn't exist */
+	y_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, mode);
+	if (y_to == -1)
+	{
+		/* Print error message and exit with code 99 */
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		close(x_from);
+		exit(99);
+	}
+
+	/* copy file_from to file_to destination file*/
+	do {
+		readSize = read(x_from, buffer, BUFF);
+		if (readSize == -1)
 		{
-			print_error("Error: Can't read from file %s\n", filename);
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+			close(x_from);
+			close(y_to);
 			exit(98);
 		}
-		if (mode == 'W')
+		writeSize = write(y_to, buffer, readSize);
+		if (writeSize == -1 || writeSize != readSize)
 		{
-			print_error("Error: Can't write to %s\n", filename);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+			close(x_from);
+			close(y_to);
 			exit(99);
 		}
-		if (mode == 'C')
-		{
-			print_error("Error: Can't close fd %d\n", fd);
-			exit(100);
-		}
+	} 
+	while (readSize > 0);
+
+	/* Close the file descriptors */
+	if (close(x_from) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", x_from);
+		exit(100);
 	}
+
+	if (close(y_to) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", y_to);
+		exit(100);
+	}
+
+	return (0);
 }
